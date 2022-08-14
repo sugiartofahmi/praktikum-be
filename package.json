@@ -5,7 +5,8 @@
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon ./src/main.js"
+    "dev": "npx nodemon ./src/main.js",
+    "start":"npm run dev"
   },
   "type": "module",
   "author": "",
