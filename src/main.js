@@ -69,7 +69,7 @@ app.put("/athlete/update", async (req, res) => {
   try {
     const athlete = await database.athlete.update({
       where: {
-        id: parseInt(req.params.id),
+        id: req.body.id,
       },
       data: {
         name: req.body.name,
@@ -77,11 +77,8 @@ app.put("/athlete/update", async (req, res) => {
         geup: req.body.geup,
       },
     });
-    if (!athlete) throw new Error("Failed to update data");
     res.send({ message: "Successfully update data", data: athlete });
-  } catch (err) {
-    res.send({ message: err.message });
-  }
+  } catch (err) {}
 });
 app.listen(port, () => {
   console.log(`App running on port  ${port}`);
