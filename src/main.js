@@ -9,9 +9,9 @@ app.use(express.json());
 //Get All Data
 app.get("/athlete", async (req, res) => {
   try {
-    const resAthlete = await database.athlete.findMany();
-    if (!resAthlete) throw new Error("Data not found");
-    res.send(resAthlete);
+    const athlete = await database.athlete.findMany();
+    if (!athlete) throw new Error("Data not found");
+    res.send(athlete);
   } catch (err) {
     res.send({ message: err.message });
   }
@@ -20,13 +20,13 @@ app.get("/athlete", async (req, res) => {
 //Get Data By ID
 app.get("/athlete/:id", async (req, res) => {
   try {
-    const resAthlete = await database.athlete.findUnique({
+    const athlete = await database.athlete.findUnique({
       where: {
         id: parseInt(req.params.id),
       },
     });
-    if (!resAthlete) throw new Error("Data not found");
-    res.send(resAthlete);
+    if (!athlete) throw new Error("Data not found");
+    res.send(athlete);
   } catch (err) {
     res.send({ message: err.message });
   }
@@ -35,14 +35,14 @@ app.get("/athlete/:id", async (req, res) => {
 //Create Data
 app.post("/athlete/create", async (req, res) => {
   try {
-    const resAthlete = await database.athlete.create({
+    const athlete = await database.athlete.create({
       data: {
         name: req.body.name,
         age: req.body.age,
         geup: req.body.geup,
       },
     });
-    if (!resAthlete) throw new Error("Failed to add data");
+    if (!athlete) throw new Error("Failed to add data");
     res.send({ message: "Successfully added data", data: athlete });
   } catch (err) {
     res.send({ message: err.message });
@@ -52,12 +52,12 @@ app.post("/athlete/create", async (req, res) => {
 //Delet Data
 app.delete("/athlete/delete", async (req, res) => {
   try {
-    const resAthlete = await database.athlete.delete({
+    const athlete = await database.athlete.delete({
       where: {
         id: req.body.id,
       },
     });
-    if (!resAthlete) throw new Error("Failed to delete data");
+    if (!athlete) throw new Error("Failed to delete data");
     res.send({ message: "Successfully delete data" });
   } catch (err) {
     res.send({ message: err.message });
@@ -67,7 +67,7 @@ app.delete("/athlete/delete", async (req, res) => {
 //Update Data
 app.put("/athlete/update", async (req, res) => {
   try {
-    const resAthlete = await database.athlete.update({
+    const athlete = await database.athlete.update({
       where: {
         id: parseInt(req.params.id),
       },
@@ -77,7 +77,7 @@ app.put("/athlete/update", async (req, res) => {
         geup: req.body.geup,
       },
     });
-    if (!resAthlete) throw new Error("Failed to update data");
+    if (!athlete) throw new Error("Failed to update data");
     res.send({ message: "Successfully update data", data: athlete });
   } catch (err) {
     res.send({ message: err.message });
