@@ -83,7 +83,6 @@ app.put("/athlete/update", async (req, res) => {
     res.send({ message: err.message });
   }
 });
-
 app.listen(port, () => {
   console.log(`App running on port  ${port}`);
 });
